@@ -1,0 +1,100 @@
+<odoo>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<record model="ir.ui.view" id="view_borrows_tree">
+<field name="name">borrows.tree</field>
+<field name="model">books.borrows</field>
+<field name="arch" type="xml">
+<tree decoration-success="state=='ended'" decoration-danger="state=='delayed'" decoration-info="state=='running'" decoration-warning="state=='draft'" sample="1" multi_edit="1" default_order="start_borrow desc">
+<!--<header>-->
+<!--<button name="action_report" string="Print Report" type="object" class="oe_highlight" states="delayed"/>-->
+<!--</header>-->
+<field name="name"/>
+<field name="book_id"/>
+<field name="start_borrow"/>
+<field name="end_borrow"/>
+<field name="book_copy_id"/>
+<field name="state" decoration-success="state=='ended'" decoration-info="state=='running'" decoration-warning="state=='draft'" decoration-danger="state=='delayed'" widget="badge"/>
+</tree>
+</field>
+</record>
+
+
+
+
+
+
+
+
+<record model="ir.ui.view" id="view_borrows_search">
+<field name="name">borrows.search</field>
+<field name="model">books.borrows</field>
+<field name="arch" type="xml">
+<search>
+<field name="name" filter_domain="[('name','ilike',self)]"/>
+<filter name="filter_ended" string="Ended" domain="[('state','=','ended')]"/>
+<filter name="filter_running" string="running" domain="[('state','=','running')]"/>
+<filter name="filter_draft" string="Draft" domain="[('state','=','draft')]"/>
+<filter name="filter_delay" string="Delayed" domain="[('state','=','delayed')]"/>
+<separator/>
+<filter name="filter_delay" string="date" domain="[('start_borrow','>=', (context_today() - relativedelta(years=1)).strftime('%%Y-%%m-%%d'))]"/>
+<group expand="0" string="Group By">
+<filter string="state" name="group_by_state" context="{'group_by': 'state'}"/>
+</group>
+<group expand="0" string="Group By">
+<filter string="name" name="group_by_name" context="{'group_by': 'name'}"/>
+</group>
+<group expand="0" string="Group By">
+<filter string="Books" name="group_by_book_id" context="{'group_by': 'book_id'}"/>
+</group>
+<searchpanel>
+<field name="state" icon="fa-users" select="multi" enable_counters="1"/>
+<field name="name" icon="fa-users" select="multi" enable_counters="1"/>
+<field name="book_id" icon="fa-users" select="multi" enable_counters="1"/>
+</searchpanel>
+</search>
+</field>
+</record>
+
+
+
+
+
+
+
+
+
+
+
+
+<record id="action_borrowed" model="ir.actions.act_window">
+<field name="name">borrowed</field>
+<field name="res_model">books.borrows</field>
+<field name="view_mode">tree,form</field>
+<!--<field name="context" eval="{'search_default_my_courses' :1}"/>-->
+<field name="help" type="html">
+<p class="o_view_nocontent_smiling_face"> Create the course </p>
+</field>
+</record>
+
+
+
+</odoo>
+

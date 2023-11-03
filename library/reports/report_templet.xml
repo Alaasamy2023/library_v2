@@ -1,0 +1,91 @@
+<odoo>
+<data>
+<template id="borrows_templet">
+<t t-call="web.html_container">
+<h2>borrowed of user</h2>
+<t t-call="web.html_container">
+<t t-call="web.external_layout">
+<div class="page">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">phone_number</th>
+      <th scope="col">start_borrow</th>
+      <th scope="col">end_borrow</th>
+      <th scope="col">duration</th>
+
+
+    </tr>
+  </thead>
+  <tbody>
+    <tr t-foreach="docs" t-as="count">
+
+      <th scope="row"  t-esc="count.id"></th>
+      <td  t-esc="count.phone_number"></td>
+      <td  t-esc="count.start_borrow"></td>
+      <td  t-esc="count.end_borrow"></td>
+      <td  t-esc="count.borrows_duration"></td>
+     </tr>
+
+  </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+</t>
+</t>
+</t>
+</template>
+<!--     000000000000000000000000000000000 -->
+<!-- action -->
+<report id="books_borrows_report" string="borrows" name="library.borrows_templet" model="books.borrows" report_type="qweb-html"/>
+</data>
+</odoo>

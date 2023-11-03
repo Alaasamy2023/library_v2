@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<odoo>
+
+        <menuitem name="Library" id="main_books_menu"  />
+
+<!--start Configration-->
+        <menuitem name="Configration" id="menu_1_setting" parent="main_books_menu" sequence="100"/>
+        <menuitem name="Author" id="menu_1_author"  parent="menu_1_setting"    action="action1_author" sequence="0"/>
+        <menuitem name="Borrows" id="menu_2_borrow"  parent="menu_1_setting" action="base.action_res_users"   sequence="10"/>
+        <menuitem name="Publisher" id="menu_1_publisher"  parent="menu_1_setting"  action="action2_publisher"  sequence="30"/>
+<!--end Configration-->
+<!--start Book Category-->
+        <menuitem name="Book Category" id="Book_Category" parent="main_books_menu" action="action_category" sequence="50"/>
+<!--end Book Category-->
+<!--start Book data-->
+        <menuitem name="Books" id="Book_data" parent="main_books_menu" action="action_book_data" sequence="20"/>
+<!--end Book data-->
+  <!--start Book copies-->
+        <menuitem name="Books copies" id="Book_copies" parent="main_books_menu" action="action_copies" sequence="30"/>
+<!--end borrows-->
+          <!--start Book copies-->
+        <menuitem name="borrows" id="Book_borrows" parent="main_books_menu" action="action_borrowed" sequence="10"/>
+<!--end borrows-->
+</odoo>
