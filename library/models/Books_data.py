@@ -2,14 +2,7 @@
 
 from odoo import models, fields, api
 from datetime import datetime, timedelta
-'''
-Books_data is a model defined in an object-relational mapping (ORM) framework, 
-which is often used in Python-based web applications, such as Odoo or Django.
- This class represents a table or collection in a database where information about books is stored.
-The _name attribute is used to specify the internal name of the model. In this case, 
-it is set to 'books.data',
- which means the table or collection name associated with this model will be 'books_data'.
-'''
+
 class Books_data(models.Model):
     _name = 'books.data'
     _description = 'books.dat'
@@ -51,16 +44,7 @@ class Books_data(models.Model):
 
     @api.depends('start_date', 'duration')
     def _get_end_date(self):
-        """
-            Sets the end date based on the start date and duration.
-
-            This method calculates the end date by adding the duration (in days) to the start date.
-            The calculated end date is then assigned to the 'end_date' field of the record.
-
-            If either the start date or duration is not available, the function does nothing.
-
-            Note: This method assumes that the 'start_date' and 'duration' fields are already populated.
-            """
+       
         for r in self:
             if not (r.start_date and r.duration):
                 r.end_date = r.start_date
